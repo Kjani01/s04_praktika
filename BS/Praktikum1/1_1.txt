@@ -1,0 +1,58 @@
+## Suspending:
+* Kommandoaufruf mit & am Ende (z.B. cp huge.file ~/destination &) oder ^Z im laufenden Betrieb
+* jobs listet alles suspendierten Prozesse
+* fg %<Prozess-Nummer> holt den Prozess in den Vordergrund zurück
+* bg %<Prozess-Nummer> lässt den Prozess im Hintergrund weiterlaufen (z.B. kann der Copybefehl im Hintergrund weiter kopieren, blockiert aber die Terminal-Eingabe nicht. Nicht jeder Prozess unterstützt das, manche stoppen sofort wieder.)
+
+## Hintergrundprozesse können die Stati
+* Stopped (im Hintergrund ohne weitere Ausführung),
+* Running (im Hintergrund mit weiterer Ausführung),
+* Done (im Hintergrund fertig ausgeführt, verschwindet beim nächsten Aufruf von jobs aus der Liste) oder
+* Terminated
+haben.
+
+Das Zeichen "+" neben einem Job heißt, dass dies der Prozess ist, der zuletzt in den Hintergrund geschickt worden ist. Dieser Prozess wird in den Vordergrund geschickt, wenn fg ohne Argumente aufgerufen wird.
+Das Zeichen "-" kennzeichnet den vorletzten Prozess, der in den Hintergrund geschickt worden ist.
+
+### Beispielausgaben:
+sth@Leviathan:~$ cmus &
+[1] 3144
+
+sth@Leviathan:~$ jobs
+[1]+  Stopped                 cmus
+
+sth@Leviathan:~$ wget http://schnoerr.userweb.mwn.de/Vorlesungen/Betriebssysteme-I/Folien/01.BS-I_Einfuehrung_4s.pdf &
+[2] 3169
+
+Redirecting output to 'wget-log'.
+
+sth@Leviathan:~$ jobs
+[1]+  Stopped                 cmus
+[2]-  Done                    wget http://schnoerr.userweb.mwn.de/Vorlesungen/Betriebssysteme-I/Folien/01.BS-I_Einfuehrung_4s.pdf
+
+sth@Leviathan:~$ jobs
+[1]+  Stopped                 cmus
+
+sth@Leviathan:~$ ping -i 5 google.com
+PING google.com (172.217.21.14): 56 data bytes
+64 bytes from 172.217.21.14: icmp_seq=0 ttl=56 time=21.160 ms
+^Z
+[2]+  Stopped                 ping -i 5 google.com
+
+sth@Leviathan:~$ bg %2
+[2]+ ping -i 5 google.com &
+64 bytes from 172.217.21.14: icmp_seq=1 ttl=56 time=21.302 ms
+
+sth@Leviathan:~$ jobs
+[1]+  Stopped                 cmus
+[2]-  Running                 ping -i 5 google.com &
+
+sth@Leviathan:~$ 64 bytes from 172.217.21.14: icmp_seq=2 ttl=56 time=21.889 ms
+kill %2
+[2]-  Terminated: 15          ping -i 5 google.com
+
+sth@Leviathan:~$ jobs
+[1]+  Stopped                 cmus
+
+sth@Leviathan:~$ fg
+cmus
