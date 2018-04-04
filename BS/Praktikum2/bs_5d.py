@@ -13,15 +13,13 @@ def threaddec(threadname):
         a -= 1
 
 threads = []
-for i in range(0, 5):
+for i in range(0, 10):
     t = threading.Thread(target=threadinc, args=(i,))
     threads.append(t)
     t.start()
 
-for t in threading.enumerate():
-    #if t is main_thread:
-        #continue
-    print "Thread No. %s joined.", t.getName()
+for t in threads:
+    print("Thread No. ", t.getName(), " joined.")
     t.join()
 
-print "GLOBALVAR ", a
+print ("GLOBALVAR ", a)

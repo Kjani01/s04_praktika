@@ -1,0 +1,5 @@
+* Blockiert -> Laufend
+Dieser Übergang existiert nicht, weil nur das Betriebssystem entscheidet, welcher bereite Thread laufen darf, nicht der Prozess selbst.
+
+* Bereit -> Blockiert
+Dieser Übergang exisitert nicht, weil der Prozess nicht weiß, ob er blockiert ist, solange er nicht läuft.
