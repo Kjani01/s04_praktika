@@ -1,1 +1,0 @@
-# s04_praktika
