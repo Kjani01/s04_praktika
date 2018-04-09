@@ -1,0 +1,28 @@
+Aufgabe 1b
+
+Split Transaction: Zweigeteilte Datenabfrage. Ein Requestpaket wird gesendet 
+und während des Wartens auf das Completionpaket kann ein neues 
+Requestpaket gesendet und auch das zugehörige Completionpaket empfangen werden.
+
+Aufgabe 2a
+
+Von Neumann stimmt mit der Aussage überein. Hier werden Progammdaten und Instuktionsdaten
+in einem Speicher zusammen verwaltet, die Harvard-Architektur hingegen unterscheidet Programm- und 
+Instruktionsspeicher.
+
+2b
+
+Eine Instruktion wird auf genau ein Datenpaket angewendet.
+
+2c
+
+Der Vorteil von einem gemeinsamen ist die Ideale Verteilung der Speichermenge von Programm und Instruktion.
+Der Nachteil eines gemeinsamen Speichers ist das bei Speicheroperationen auftretende Bottleneck.
+Dies ist bei getrennten Speichern im Harvard-Modell nicht der Fall. Dafür kann hier keine flexible Speicherverteilung erreicht werden.
+
+2d
+
+Mit einer individuellen Speicherverwaltung für Instruktionen und Daten können theoretisch
+die Vorteile der Harvard-Architektur ausgenutzt werden. Praktisch unterliegt die Speicherverwaltung
+dem Hostsystem.
+
