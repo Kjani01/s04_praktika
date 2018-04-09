@@ -1,0 +1,1 @@
+• SimpleFileInput bietet sich für das Singleton-Pattern nicht an, da im Konstruktor eine Datei angegeben wird. Für die Arbeit mit verschiedenen Dateien in der gleichen Instanz müsste also das Interface und einiges an der Struktur geändert werden.
