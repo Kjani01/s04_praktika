@@ -1,1 +1,3 @@
 • SimpleFileInput bietet sich für das Singleton-Pattern nicht an, da im Konstruktor eine Datei angegeben wird. Für die Arbeit mit verschiedenen Dateien in der gleichen Instanz müsste also das Interface und einiges an der Struktur geändert werden.
+
+• AbstractFactory kann logischerweise nicht im Singleton-Pattern implementiert werden, da sie als Abstract Class per Definition niemals instanziiert wird.
