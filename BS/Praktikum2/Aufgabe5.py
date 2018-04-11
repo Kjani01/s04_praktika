@@ -20,8 +20,3 @@ for t in threads:
 
 print ("===\nValue of global variable: ", a)
 
-# BEOBACHTUNGEN:
-# Die globale Variable ist in allen Versuchen 0. Dies ist überraschend, weil die globale Variable nicht threadsicher ist.
-# Wahrscheinlich ist die Arbeit in der Thread-Schleife derart trivial, dass sie bereits abgeschlossen ist, bevor der nächste Thread die Gelegenheit hat, zu starten
-# Sicherlich wären auf langsameren Systemen deutliche Unterschiede bei verschiedenen Testläufen zu beobachten, bei denen alle Werte zwischen -5000 und 5000 verteilt sind.
-# Dies lässt sich simulieren, indem die Anzahl der Wiederholungen in der Thread-Schleife erhöht werden. Ein Wert von 1000000 war in unseren Testläufen dafür auf unserem System ausreichend.
