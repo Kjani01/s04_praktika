@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="tokenstream">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="numeral"/>
+        <xs:element ref="identifier"/>
+        <xs:element ref="assign"/>
+        <xs:element ref="add"/>
+        <xs:element ref="sub"/>
+        <xs:element ref="mult"/>
+        <xs:element ref="div"/>
+        <xs:element ref="mod"/>
+        <xs:element ref="print"/>
+        <xs:element ref="open"/>
+        <xs:element ref="close"/>
+        <xs:element ref="semicolon"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="numeral">
+    <xs:complexType>
+      <xs:attribute name="value" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="identifier">
+    <xs:complexType>
+      <xs:attribute name="value" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="assign">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="add">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="sub">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="mult">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="div">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="mod">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="print">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="open">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="close">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="semicolon">
+    <xs:complexType/>
+  </xs:element>
+</xs:schema>
