@@ -1,0 +1,20 @@
+1. 
+
+Es handelt sich um eine Kombination aus von Neumann und Harvard-Architektur.
+Die Chaches sind Harvard-Architektur (Trennung von Instruktionen und Daten) 
+und der Hauptspeicher (SDRAM) ist von Neumann Architektur (gemeinsamer Speicher
+für Instruktionen und Daten).
+
+3. 
+
+Taktperiode: 10ns
+daraus ergibt sich ein Takt von 100 MHz
+
+4.
+
+Der Datenbus ist dat_i und dat_o.
+Adressbus ist adr_i und adr_o.
+Alle übrigen (reset, clk, usw.) gehört zum Steuerbus.
+
+
+
