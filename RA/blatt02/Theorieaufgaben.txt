@@ -1,3 +1,10 @@
+Aufgabe 1a
+
+Schicht 		Aufgabe								Name der Übertragungseinheit
+Transaction		Paketorientierter Datenaustausch	TLPs
+Data Link		Zuverlässigkeit und Flusskontrolle	DLLPs
+Physical 		Physikalische Übertragung 
+
 Aufgabe 1b
 
 Split Transaction: Zweigeteilte Datenabfrage. Ein Requestpaket wird gesendet 
@@ -25,4 +32,9 @@ Dies ist bei getrennten Speichern im Harvard-Modell nicht der Fall. Dafür kann 
 Mit einer individuellen Speicherverwaltung für Instruktionen und Daten können theoretisch
 die Vorteile der Harvard-Architektur ausgenutzt werden. Praktisch unterliegt die Speicherverwaltung
 dem Hostsystem.
+
+Aufgabe 3a
+
+3 CPI 
+Vorher waren es 5 CPI => Verbesserung um 2 CPI
 
