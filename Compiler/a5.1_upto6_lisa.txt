@@ -15,6 +15,7 @@ bbb
 aaaa
 aaab
 aabb
+abba
 abbb
 baaa
 baab
@@ -26,7 +27,10 @@ bbbb
 aaaaa
 aaaab
 aaabb
+aabba
 aabbb
+abbaa
+abbba
 abbbb
 baaaa
 baaab
@@ -43,8 +47,14 @@ bbbbb
 aaaaaa
 aaaaab
 aaaabb
+aaabba
 aaabbb
+aabbaa
+aabbba
 aabbbb
+abbaaa
+abbbaa
+abbbba
 abbbbb
 baaaaa
 baaaab
