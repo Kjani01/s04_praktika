@@ -15,7 +15,7 @@ print("Beenden dieses Programmes: \t exit")
 print("----------------------------------")
 
 while True:
- 	option = raw_input("Welcher option?")
+	option = raw_input("Welcher option?")
 	if(option != "addi" and option != "adds" and option != "mult" and option != "exit"):
 		print("Fehler in der Eingabe-option existiert nicht")
 		continue
@@ -35,7 +35,7 @@ while True:
 		s.send(second)
 		length = unpack('i',s.recv(4))[0]
 		result = s.recv(length)
-	else:			
+	else:
 		s.send(pack('i',int(first)))
 		s.send(pack('i',int(second)))
 		result = unpack('i',s.recv(4))[0]
