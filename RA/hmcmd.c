@@ -1,10 +1,10 @@
-//#include "common.h"
-//#include "spi.h"
-//#include "support.h"
+#include "common.h"
+#include "spi.h"
+#include "support.h"
 #include "string.h"
 
 #define NR_ELEMENTS 100
-#define NEGMOD 2
+#define NEGMOD 4
 #define STRINGI(x) #x
 #define STR(x) STRINGI(x)
 #define ITERATIONS 10000000
@@ -256,15 +256,14 @@ void branch_measurement()
 	int timebef = timestamp;	
 	for (int i = 0; i < iterations; i++)
 	{
-		asm volatile("l.addi r10,r0,1" ::: "r10");
 		asm volatile (
-		"l.sfeqi r10,1\n"
+		"l.sfeqi r0,0\n"
 		"l.bf 1f\n"
 		"l.nop\n"
 		"l.nop\n"
 
 		"1:\n"
-		"l.nop\n":::"r10"
+		"l.nop\n"
 		);
 	}
 	int timeaf = timestamp;
@@ -286,15 +285,14 @@ void branch_measurement()
 	timebef = timestamp;	
 	for (int i = 0; i < iterations; i++)
 	{
-		asm volatile("l.addi r10,r0,1" ::: "r10");
 		asm volatile (
-		"l.sfeqi r10,2\n"
+		"l.sfeqi r0,1\n"
 		"l.bf 1f\n"
 		"l.nop\n"
 		"l.nop\n"
 
 		"1:\n"
-		"l.nop\n":::"r10"
+		"l.nop\n"
 		);
 	}
 	timeaf = timestamp;
@@ -316,17 +314,18 @@ void branch_measurement()
 	timebef = timestamp;	
 	for (int i = 0; i < iterations; i++)
 	{
-		asm volatile("l.addi r10,r0,1" ::: "r10");
 		asm volatile (
 		"1:\n"
 		"l.nop\n"
 		"l.nop\n"
 		"l.nop\n"
+		"l.bf 2f\n"
 
-		"l.sfeqi r10,1\n"
+		"l.sfeqi r0,0\n"
 		"l.bf 1b\n"
+		"2:\n"
 		"l.nop\n"
-		"l.nop\n":::"r10"
+		"l.nop\n"
 		);
 	}
 	timeaf = timestamp;
@@ -348,17 +347,16 @@ void branch_measurement()
 	timebef = timestamp;	
 	for (int i = 0; i < iterations; i++)
 	{
-		asm volatile("l.addi r10,r0,1" ::: "r10");
 		asm volatile (
 		"1:\n"
 		"l.nop\n"
 		"l.nop\n"
 		"l.nop\n"
 
-		"l.sfeqi r10,2\n"
+		"l.sfeqi r0,1\n"
 		"l.bf 1b\n"
 		"l.nop\n"
-		"l.nop\n":::"r10"
+		"l.nop\n"
 
 		);
 	}
@@ -380,7 +378,7 @@ void branch_measurement()
 void do_count()
 {
 
-	int iterations = 10000000;
+	int iterations = 100000;
 
 	int input[NR_ELEMENTS];
 	int result=0;
@@ -388,16 +386,16 @@ void do_count()
 	for (int i = 0; i < NR_ELEMENTS; i++)
 	{
 		if (i % NEGMOD == 0)
-			input[i] = 1;
-		else
 			input[i] = -1;
+		else
+			input[i] = 1;
 	}
 	
 	int timebef = timestamp;	
 	asm volatile ("l.nop");
 	asm volatile ("l.nop");
 	
-	for(int i = 0; i < runs; i++){
+	for(int i = 0; i < iterations; i++){
 		
 		asm volatile (
 		"l.addi r5,r0,0                     # set r5 to 0 - this is the loop counter\n"
@@ -425,8 +423,11 @@ void do_count()
 	int timeaf = timestamp;
 	int duration = timeaf - timebef;
 	long cycles = duration / TICKS_PER_SEC;
+	//printf("CYCLES1: %d\n", cycles);
 	cycles = cycles * IN_CLK;
+	//printf("CYCLES1*INCLK: %d\n", cycles);
 	cycles = cycles - (4 * iterations);
+	//printf("CYCLES2-4iter: %d\n", cycles);
 
 	printf("DURATION: %d\n", duration);
 	printf("CYCLES:   %d\n", cycles);
@@ -435,7 +436,7 @@ void do_count()
 
 void do_count_cmov()
 {
-	int iterations = 10000000;
+	int iterations = 100000;
 
 	int input[NR_ELEMENTS];
 	int result=0;
@@ -443,16 +444,16 @@ void do_count_cmov()
 	for (int i = 0; i < NR_ELEMENTS; i++)
 	{
 		if (i % NEGMOD == 0)
-			input[i] = 1;
-		else
 			input[i] = -1;
+		else
+			input[i] = 1;
 	}
 	
 	int timebef = timestamp;	
 	asm volatile ("l.nop");
 	asm volatile ("l.nop");
 	
-	for(int i = 0; i < runs; i++){
+	for(int i = 0; i < iterations; i++){
 		
 		asm volatile (
 		"l.addi r5,r0,0                     # set r5 to 0 - this is the loop counter\n"
@@ -489,7 +490,7 @@ void do_count_cmov()
 
 void do_count_unrolled()
 {
-	int iterations = 10000000;
+	int iterations = 100000;
 
 	int input[NR_ELEMENTS];
 	int result=0;
@@ -497,16 +498,16 @@ void do_count_unrolled()
 	for (int i = 0; i < NR_ELEMENTS; i++)
 	{
 		if (i % NEGMOD == 0)
-			input[i] = 1;
-		else
 			input[i] = -1;
+		else
+			input[i] = 1;
 	}
 	
 	int timebef = timestamp;	
 	asm volatile ("l.nop");
 	asm volatile ("l.nop");
 	
-	for(int i = 0; i < ITERATIONS; i++){
+	for(int i = 0; i < iterations; i++){
 		
 		asm volatile (
 		"l.addi r5,r0,0                     # set r5 to 0 - this is the loop counter\n"
@@ -520,30 +521,27 @@ void do_count_unrolled()
 		"l.sfgtsi r7,0                      # set flag if >0\n"
 		"l.cmov r9,r8,r0                    # r9 is 1 if r7 was >0, else 0\n"
 		"l.add %0,%0,r9                     # increment number of counted positives by 1 or 0\n"
-		"l.addi r6,r6,1                     # increment position in memory (delay slot!)\n"
 		
-		"l.lwz r7,0(r6)                     # load next value to be checked\n"
+		"l.lwz r7,4(r6)                     # load next value to be checked\n"
 		"l.sfgtsi r7,0                      # set flag if >0\n"
 		"l.cmov r9,r8,r0                    # r9 is 1 if r7 was >0, else 0\n"
 		"l.add %0,%0,r9                     # increment number of counted positives by 1 or 0\n"
-		"l.addi r6,r6,1                     # increment position in memory (delay slot!)\n"
 		
-		"l.lwz r7,0(r6)                     # load next value to be checked\n"
+		"l.lwz r7,8(r6)                     # load next value to be checked\n"
 		"l.sfgtsi r7,0                      # set flag if >0\n"
 		"l.cmov r9,r8,r0                    # r9 is 1 if r7 was >0, else 0\n"
 		"l.add %0,%0,r9                     # increment number of counted positives by 1 or 0\n"
-		"l.addi r6,r6,1                     # increment position in memory (delay slot!)\n"
 		
-		"l.lwz r7,0(r6)                     # load next value to be checked\n"
+		"l.lwz r7,12(r6)                     # load next value to be checked\n"
 		"l.sfgtsi r7,0                      # set flag if >0\n"
 		"l.cmov r9,r8,r0                    # r9 is 1 if r7 was >0, else 0\n"
 		"l.add %0,%0,r9                     # increment number of counted positives by 1 or 0\n"
-		"l.addi r6,r6,1                     # increment position in memory (delay slot!)\n"
+		"l.addi r6,r6,16                     # increment position in memory (delay slot!)\n"
 		
-		"l.sfeqi r5, " STR(NR_ELEMENTS-1) " # check if end of loop reached\n"
+		"l.sfeqi r5, " STR(NR_ELEMENTS-4) " # check if end of loop reached\n"
 		"l.bnf 0b                           # if not all iterations are done, do another loop\n"
 		
-		"l.addi r5,r5,1                     # increment loop counter (delay slot!)\n"
+		"l.addi r5,r5,4                     # increment loop counter (delay slot!)\n"
 		: "=r" (result) : "r" (input) : "r5","r6","r7","r8","r9");	
 	}
 	
@@ -554,14 +552,17 @@ void do_count_unrolled()
 	int timeaf = timestamp;
 	int duration = timeaf - timebef;
 	long cycles = duration / TICKS_PER_SEC;
+	//printf("CYCLES1: %d\n", cycles);
 	cycles = cycles * IN_CLK;
+	//printf("CYCLES1*INCLK: %d\n", cycles);
 	cycles = cycles - (4 * iterations);
+	//printf("CYCLES2-4iter: %d\n", cycles);
 
 	printf("DURATION: %d\n", duration);
 	printf("CYCLES:   %d\n", cycles);
 }
 
-void rawhaz()
+void rawhaz() /* PASST */
 {
 	int iterations = 10000000;
 
@@ -571,7 +572,7 @@ void rawhaz()
 	for (int i = 0; i < iterations; i++)
 	{
 		asm volatile ("l.add r9, r7, r8" ::: "r9");
-		asm volatile ("l.add r10, r9, r8" ::: "r10");
+		asm volatile ("l.add r10, r7, r8" ::: "r10");
 	}
 	asm volatile ("l.nop");
 	asm volatile ("l.nop");
@@ -581,13 +582,37 @@ void rawhaz()
 	cycles = cycles * IN_CLK;
 	cycles = cycles - (4 * iterations);
 
-	printf("0 NOPs\n");
+	printf("WITHOUT HAZARD\n");
+	printf("DURATION: %d\n", duration);
+	printf("CYCLES:   %d\n\n", cycles);
+	
+	/*-------*/
+
+	iterations = 10000000;
+
+	timebef = timestamp;
+	asm volatile ("l.nop");
+	asm volatile ("l.nop");
+	for (int i = 0; i < iterations; i++)
+	{
+		asm volatile ("l.add r9, r7, r8" ::: "r9");
+		asm volatile ("l.add r10, r9, r8" ::: "r10");
+	}
+	asm volatile ("l.nop");
+	asm volatile ("l.nop");
+	timeaf = timestamp;
+	duration = timeaf - timebef;
+	cycles = duration / TICKS_PER_SEC;
+	cycles = cycles * IN_CLK;
+	cycles = cycles - (4 * iterations);
+
+	printf("WITH HAZARD\n");
 	printf("DURATION: %d\n", duration);
 	printf("CYCLES:   %d\n\n", cycles);
 	
 	/*-----*/
 	
-	iterations = 10000000;
+	/*iterations = 10000000;
 
 	timebef = timestamp;	
 	asm volatile ("l.nop");
@@ -608,11 +633,11 @@ void rawhaz()
 
 	printf("1 NOP\n");
 	printf("DURATION: %d\n", duration);
-	printf("CYCLES:   %d\n\n", cycles);
+	printf("CYCLES:   %d\n\n", cycles);*/
 	
 	/*-----*/
 	
-	iterations = 10000000;
+	/*iterations = 10000000;
 
 	timebef = timestamp;	
 	asm volatile ("l.nop");
@@ -632,13 +657,13 @@ void rawhaz()
 	cycles = cycles * IN_CLK;
 	cycles = cycles - (4 * iterations);
 
-	printf("2 NOPs\n")
+	printf("2 NOPs\n");
 	printf("DURATION: %d\n", duration);
-	printf("CYCLES:   %d\n\n", cycles);
+	printf("CYCLES:   %d\n\n", cycles);*/
 	
 	/*-----*/
 	
-	iterations = 10000000;
+	/*iterations = 10000000;
 
 	timebef = timestamp;	
 	asm volatile ("l.nop");
@@ -661,11 +686,11 @@ void rawhaz()
 
 	printf("3 NOPs\n");
 	printf("DURATION: %d\n", duration);
-	printf("CYCLES:   %d\n\n", cycles);
+	printf("CYCLES:   %d\n\n", cycles);*/
 	
 	/*-----*/
 	
-	iterations = 10000000;
+	/*iterations = 10000000;
 
 	timebef = timestamp;	
 	asm volatile ("l.nop");
@@ -689,11 +714,11 @@ void rawhaz()
 
 	printf("4 NOPs\n");
 	printf("DURATION: %d\n", duration);
-	printf("CYCLES:   %d\n\n", cycles);
+	printf("CYCLES:   %d\n\n", cycles);*/
 	
 	/*-----*/
 	
-	iterations = 10000000;
+	/*iterations = 10000000;
 
 	timebef = timestamp;	
 	asm volatile ("l.nop");
@@ -718,5 +743,5 @@ void rawhaz()
 
 	printf("5 NOPs\n");
 	printf("DURATION: %d\n", duration);
-	printf("CYCLES:   %d\n\n", cycles);
+	printf("CYCLES:   %d\n\n", cycles);*/
 }
