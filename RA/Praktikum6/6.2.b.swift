@@ -40,7 +40,7 @@ func smallestDouble(_ number: inout String) -> Double
                 {
                     printDouble(d)
                 }
-                if d < smallest
+                if abs(d) < abs(smallest)
                 {
                     smallest = d
                 }
@@ -52,7 +52,7 @@ func smallestDouble(_ number: inout String) -> Double
                 {
                     printDouble(d)
                 }
-                if abs(e) < smallest
+                if abs(e) < abs(smallest)
                 {
                     smallest = e
                 }
