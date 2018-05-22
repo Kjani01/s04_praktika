@@ -1,5 +1,7 @@
 #!/usr/bin/swift
 
+let verbose = false
+
 extension String
 {
     func leftPadding(toLength: Int, withPad character: Character) -> String
@@ -25,25 +27,57 @@ func printDouble(_ d: Double)
     print()
 }
 
-var num = "0.1"
-
-while true
+func smallestDouble(_ number: inout String) -> Double
 {
-    if let d = Double(num)
+    var smallest = 1.0
+    while true
     {
-        if 1.0 + d != 1.0
+        if let d = Double(number)
         {
-            printDouble(d)
+            if 1.0 + d != 1.0
+            {
+                if verbose
+                {
+                    printDouble(d)
+                }
+                if d < smallest
+                {
+                    smallest = d
+                }
+            }
+            let e = -d
+            if 1.0 + e != 1.0
+            {
+                if verbose
+                {
+                    printDouble(d)
+                }
+                if abs(e) < smallest
+                {
+                    smallest = e
+                }
+            }
+            number.insert("0", at: number.index(before: number.endIndex))
         }
-        let e = -d
-        if 1.0 + e != 1.0
+        else
         {
-            printDouble(e)
+            break
         }
-        num.insert("0", at: num.index(before: num.endIndex))
     }
-    else
+    return smallest
+}
+
+var numbers = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"]
+var smallest = 1.0
+
+for i in 0...numbers.count - 1
+{
+    let small = smallestDouble(&numbers[i])
+    if small < smallest
     {
-        break
+        smallest = small
     }
 }
+
+print("SMALLEST\n========")
+printDouble(smallest)
