@@ -1,6 +1,6 @@
 #!/usr/bin/swift
 
-let verbose = false
+let verbose = true
 
 extension String
 {
@@ -59,7 +59,7 @@ var smallest = 1.0
 for i in 0...numbers.count - 1
 {
     let small = smallestDouble(&numbers[i])
-    if small < smallest
+    if abs(small) < abs(smallest)
     {
         smallest = small
     }
