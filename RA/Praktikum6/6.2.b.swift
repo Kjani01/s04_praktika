@@ -1,6 +1,6 @@
 #!/usr/bin/swift
 
-let verbose = true
+let verbose = false
 
 extension String
 {
