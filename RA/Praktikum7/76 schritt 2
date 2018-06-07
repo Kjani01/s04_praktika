@@ -1,0 +1,415 @@
+(sim) run 10000000 hush
+
+de0_nano monitor (type 'help' for help)
+	build: Do 7. Jun 15:12:00 CEST 2018
+de0_nano> (sim) run 10000000 hush
+ccoorreemmaarrkk  11000000
+
+(sim) stats clear
+Cleared.
+(sim) run 10000000 hush
+(sim) stats 1
+stats 1: Misc stats
+
+bnf: 593541 (63%) taken, 346850 (36%) not taken, 478658 (50%) forward, 461733 (49%) backward
+bf: 535764 (60%) taken, 267816 (30%) not taken, 507847 (57%) forward, 382699 (42%) backward
+StaticBP bnf(backward): correct 24%
+StaticBP bf(backward): correct 11%
+BPB: hit 1204971 (correct 87%), miss 371669
+BTIC: hit 1487978(94%), miss 88662
+No ICache. Enable it to see IC results.
+No DCache. Enable it to see DC results.
+IMMU read:  hit 0(0%), miss 0
+DMMU read:  hit 0(0%), miss 0
+Additional LOAD CYCLES: 0  STORE CYCLES: 0
+(sim) stats 2
+stats 2: Instruction usage
+  l.j             used 100874x (  1.0%)
+  l.ori           used 794622x (  7.9%)
+  l.andi          used 569284x (  5.7%)
+  l.srli          used 380638x (  3.8%)
+  l.xor           used 109138x (  1.1%)
+  l.xori          used 123267x (  1.2%)
+  l.sfeqi         used 456740x (  4.6%)
+  l.bf            used 940391x (  9.4%)
+  l.sfnei         used 463792x (  4.6%)
+  l.bnf           used 636249x (  6.4%)
+  l.sfeq          used  17442x (  0.2%)
+  l.jr            used  33162x (  0.3%)
+  l.lwz           used 912441x (  9.1%)
+  l.jal           used  33162x (  0.3%)
+  l.addi          used 1364157x ( 13.6%)
+  l.sw            used 376501x (  3.8%)
+  l.sfne          used 416859x (  4.2%)
+  l.lhz           used  18553x (  0.2%)
+  l.slli          used 144860x (  1.4%)
+  l.srai          used 272740x (  2.7%)
+  l.and           used  11557x (  0.1%)
+  l.or            used  32998x (  0.3%)
+  l.sh            used  29682x (  0.3%)
+  l.lhs           used 447416x (  4.5%)
+  l.nop           used  67270x (  0.7%)
+  l.sub           used  45246x (  0.5%)
+  l.sfgtsi        used   8417x (  0.1%)
+  l.sfgesi        used  14829x (  0.1%)
+  l.sflesi        used   4793x (  0.0%)
+  l.sfltsi        used  16426x (  0.2%)
+  l.movhi         used    155x (  0.0%)
+  l.add           used 445536x (  4.5%)
+  l.mul           used 251343x (  2.5%)
+  l.sfgts         used  69336x (  0.7%)
+  l.sfles         used  34668x (  0.3%)
+  l.lbz           used 245001x (  2.5%)
+  l.sfgtui        used  87670x (  0.9%)
+  l.sfleui        used  15447x (  0.2%)
+  l.sfgeu         used    751x (  0.0%)
+  l.sb            used    961x (  0.0%)
+  l.sfltu         used    742x (  0.0%)
+  l.lbs           used   4836x (  0.0%)
+  l.mtspr         used     24x (  0.0%)
+  l.rfe           used     24x (  0.0%)
+10000000 instructions (dynamic, single stats)
+(sim) stats 3
+stats 3: Instruction dependencies
+  l.ori, l.j                      56898x (  0.6%)   depend:   0.0%
+  l.j, l.ori                      61611x (  0.6%)   depend:   0.0%
+  l.ori, l.andi                  120483x (  1.2%)   depend:  44.8%
+  l.andi, l.srli                 220132x (  2.2%)   depend:   0.0%
+  l.srli, l.xor                   85746x (  0.9%)   depend:   0.0%
+  l.xor, l.xori                   98362x (  1.0%)   depend:   0.0%
+  l.xori, l.andi                 112063x (  1.1%)   depend:   0.0%
+  l.srli, l.sfeqi                 18823x (  0.2%)   depend:   0.0%
+  l.sfeqi, l.srli                 15324x (  0.2%)   depend:   0.0%
+  l.srli, l.bf                    14533x (  0.1%)   depend:   0.0%
+  l.bf, l.ori                    193481x (  1.9%)   depend:   0.0%
+  l.andi, l.xor                   19614x (  0.2%)   depend: 100.0%
+  l.srli, l.sfnei                 81330x (  0.8%)   depend:   0.0%
+  l.sfnei, l.srli                 87328x (  0.9%)   depend:   0.0%
+  l.srli, l.bnf                   98532x (  1.0%)   depend:   0.0%
+  l.bnf, l.ori                   137258x (  1.4%)   depend:   0.0%
+  l.srli, l.xori                  20615x (  0.2%)   depend:   0.0%
+  l.srli, l.sfeq                  15409x (  0.2%)   depend:   0.0%
+  l.sfeq, l.srli                  15409x (  0.2%)   depend:   0.0%
+  l.ori, l.ori                   188718x (  1.9%)   depend:   1.5%
+  l.andi, l.jr                     5998x (  0.1%)   depend:   0.0%
+  l.jr, l.lwz                     33162x (  0.3%)   depend:   0.0%
+  l.lwz, l.lwz                   163621x (  1.6%)   depend:   0.0%
+  l.lwz, l.ori                     3894x (  0.0%)   depend:   2.7%
+  l.ori, l.jal                    28768x (  0.3%)   depend:   0.0%
+  l.jal, l.addi                    1733x (  0.0%)   depend:   0.0%
+  l.addi, l.andi                 105531x (  1.1%)   depend:  19.5%
+  l.andi, l.sw                     5628x (  0.1%)   depend:   0.9%
+  l.sw, l.xor                      1707x (  0.0%)   depend:   0.0%
+  l.xori, l.addi                   1708x (  0.0%)   depend:   0.0%
+  l.srli, l.andi                  22975x (  0.2%)   depend:  10.8%
+  l.andi, l.addi                  11528x (  0.1%)   depend:   0.0%
+  l.addi, l.sfnei                  6335x (  0.1%)   depend:   5.3%
+  l.srli, l.ori                    4996x (  0.0%)   depend:   0.0%
+  l.ori, l.bnf                     5765x (  0.1%)   depend:   0.0%
+  l.bnf, l.srli                   10222x (  0.1%)   depend:   0.0%
+  l.srli, l.j                      5153x (  0.1%)   depend:   0.0%
+  l.andi, l.andi                  84739x (  0.8%)   depend:   0.0%
+  l.xori, l.srli                   8705x (  0.1%)   depend:   0.0%
+  l.xor, l.srli                    5206x (  0.1%)   depend:   0.0%
+  l.sfnei, l.bnf                  88611x (  0.9%)   depend: 100.0%
+  l.ori, l.srli                    4205x (  0.0%)   depend:   0.0%
+  l.andi, l.sfnei                 62741x (  0.6%)   depend:  97.3%
+  l.srli, l.srli                   1707x (  0.0%)   depend:   0.0%
+  l.lwz, l.sfne                    2887x (  0.0%)   depend:  70.4%
+  l.sfne, l.bf                   191461x (  1.9%)   depend: 100.0%
+  l.ori, l.lwz                   167299x (  1.7%)   depend:  95.3%
+  l.lwz, l.jr                       425x (  0.0%)   depend:   0.0%
+  l.lwz, l.lhz                      346x (  0.0%)   depend:   0.0%
+  l.lhz, l.slli                     214x (  0.0%)   depend:   0.0%
+  l.slli, l.sfnei                   214x (  0.0%)   depend:   0.0%
+  l.sfnei, l.lwz                  10761x (  0.1%)   depend:   0.0%
+  l.lwz, l.bf                       107x (  0.0%)   depend:   0.0%
+  l.bf, l.srai                   104325x (  1.0%)   depend:   0.0%
+  l.srai, l.lhz                     214x (  0.0%)   depend:   0.0%
+  l.lhz, l.andi                     739x (  0.0%)   depend:   0.0%
+  l.sw, l.jal                       422x (  0.0%)   depend:   0.0%
+  l.jal, l.sw                      1166x (  0.0%)   depend:   0.0%
+  l.sw, l.andi                     4538x (  0.0%)   depend:   0.0%
+  l.andi, l.xori                    791x (  0.0%)   depend:   0.0%
+  l.xori, l.xor                     791x (  0.0%)   depend:   0.0%
+  l.xor, l.sw                       791x (  0.0%)   depend:   0.0%
+  l.addi, l.srli                    791x (  0.0%)   depend:   0.0%
+  l.ori, l.bf                     35511x (  0.4%)   depend:   0.0%
+  l.bf, l.srli                      791x (  0.0%)   depend:   0.0%
+  l.lwz, l.addi                  155998x (  1.6%)   depend:  17.7%
+  l.addi, l.lwz                  373092x (  3.7%)   depend:   0.0%
+  l.lwz, l.and                      739x (  0.0%)   depend:   0.0%
+  l.and, l.andi                     739x (  0.0%)   depend:   0.0%
+  l.andi, l.ori                     846x (  0.0%)   depend:   0.0%
+  l.lwz, l.or                       739x (  0.0%)   depend:   0.0%
+  l.or, l.sh                        739x (  0.0%)   depend:   0.0%
+  l.sh, l.sw                        396x (  0.0%)   depend:   0.0%
+  l.sw, l.sh                        370x (  0.0%)   depend:   0.0%
+  l.sh, l.lwz                       739x (  0.0%)   depend:   0.0%
+  l.lwz, l.lhs                    94887x (  0.9%)   depend:  11.7%
+  l.lhs, l.andi                   14295x (  0.1%)   depend: 100.0%
+  l.andi, l.sfeqi                  7224x (  0.1%)   depend:  89.8%
+  l.sfeqi, l.bnf                 237190x (  2.4%)   depend: 100.0%
+  l.sfeqi, l.slli                   739x (  0.0%)   depend:   0.0%
+  l.slli, l.bf                      739x (  0.0%)   depend:   0.0%
+  l.bf, l.or                        739x (  0.0%)   depend:   0.0%
+  l.or, l.sfeqi                     632x (  0.0%)   depend:   0.0%
+  l.bnf, l.nop                     6347x (  0.1%)   depend:   0.0%
+  l.nop, l.j                        262x (  0.0%)   depend:   0.0%
+  l.ori, l.lhz                      525x (  0.0%)   depend:   0.0%
+  l.andi, l.jal                     369x (  0.0%)   depend:   0.0%
+  l.sh, l.sh                        369x (  0.0%)   depend:   0.0%
+  l.lwz, l.sub                     3008x (  0.0%)   depend: 100.0%
+  l.sub, l.sfgtsi                  3008x (  0.0%)   depend: 100.0%
+  l.sfgtsi, l.bf                   3008x (  0.0%)   depend: 100.0%
+  l.bf, l.sfeqi                   12169x (  0.1%)   depend:   0.0%
+  l.sfeqi, l.sfeqi                 1441x (  0.0%)   depend:   0.0%
+  l.sfeqi, l.ori                  10143x (  0.1%)   depend:   0.0%
+  l.ori, l.addi                   66228x (  0.7%)   depend:   0.4%
+  l.addi, l.bnf                    5543x (  0.1%)   depend: 100.0%
+  l.bnf, l.lwz                     5886x (  0.1%)   depend:   0.0%
+  l.lwz, l.sw                    171588x (  1.7%)   depend:   0.5%
+  l.sw, l.ori                     44656x (  0.4%)   depend:   0.0%
+  l.ori, l.sfnei                  17014x (  0.2%)   depend:   0.0%
+  l.sfnei, l.bf                  237540x (  2.4%)   depend: 100.0%
+  l.bf, l.sub                     25765x (  0.3%)   depend:   0.0%
+  l.sub, l.or                     20595x (  0.2%)   depend: 100.0%
+  l.or, l.sfgesi                   9473x (  0.1%)   depend: 100.0%
+  l.sfgesi, l.bf                   9473x (  0.1%)   depend: 100.0%
+  l.sub, l.sfeqi                    900x (  0.0%)   depend:   0.0%
+  l.addi, l.bf                    67626x (  0.7%)   depend: 100.0%
+  l.bf, l.lwz                     17741x (  0.2%)   depend:   0.0%
+  l.sub, l.sflesi                  4582x (  0.0%)   depend:   0.0%
+  l.sflesi, l.bf                   4741x (  0.0%)   depend: 100.0%
+  l.sub, l.sfnei                   2033x (  0.0%)   depend:   0.0%
+  l.addi, l.addi                 137021x (  1.4%)   depend:   0.2%
+  l.addi, l.sw                    90086x (  0.9%)   depend:  71.2%
+  l.sw, l.lwz                      7610x (  0.1%)   depend:   0.0%
+  l.lwz, l.sfnei                  36702x (  0.4%)   depend:  27.1%
+  l.bnf, l.addi                  384922x (  3.8%)   depend:   0.0%
+  l.bf, l.nop                     58294x (  0.6%)   depend:   0.0%
+  l.nop, l.sfnei                   2267x (  0.0%)   depend:   0.0%
+  l.sfnei, l.ori                   2345x (  0.0%)   depend:   0.0%
+  l.lwz, l.bnf                      785x (  0.0%)   depend:   0.0%
+  l.ori, l.sub                     2345x (  0.0%)   depend:   0.0%
+  l.or, l.sfltsi                  11122x (  0.1%)   depend: 100.0%
+  l.sfltsi, l.bf                  13877x (  0.1%)   depend: 100.0%
+  l.nop, l.lwz                    18140x (  0.2%)   depend:   0.0%
+  l.lhs, l.sw                      3008x (  0.0%)   depend:   0.0%
+  l.lhz, l.jal                      159x (  0.0%)   depend:   0.0%
+  l.sw, l.sw                       8238x (  0.1%)   depend:   0.0%
+  l.sw, l.slli                      428x (  0.0%)   depend:   0.0%
+  l.slli, l.addi                  61514x (  0.6%)   depend:   0.0%
+  l.sw, l.addi                    31951x (  0.3%)   depend:   0.0%
+  l.addi, l.srai                    107x (  0.0%)   depend:   0.0%
+  l.srai, l.andi                  31183x (  0.3%)   depend:  99.7%
+  l.andi, l.lwz                   42718x (  0.4%)   depend:   0.0%
+  l.lwz, l.jal                     3178x (  0.0%)   depend:   0.0%
+  l.jal, l.lwz                      215x (  0.0%)   depend:   0.0%
+  l.lwz, l.slli                   26898x (  0.3%)   depend:   0.0%
+  l.slli, l.sw                      214x (  0.0%)   depend:   0.0%
+  l.addi, l.ori                   77035x (  0.8%)   depend:   0.6%
+  l.ori, l.movhi                    107x (  0.0%)   depend:   0.0%
+  l.movhi, l.sw                     107x (  0.0%)   depend:   0.0%
+  l.sw, l.or                        107x (  0.0%)   depend:   0.0%
+  l.or, l.sw                        107x (  0.0%)   depend:   0.0%
+  l.sw, l.sfeqi                    5593x (  0.1%)   depend:   0.0%
+  l.sfeqi, l.addi                   161x (  0.0%)   depend:   0.0%
+  l.ori, l.srai                     266x (  0.0%)   depend:   0.0%
+  l.srai, l.bf                      266x (  0.0%)   depend:   0.0%
+  l.srai, l.add                   24877x (  0.2%)   depend:   0.0%
+  l.add, l.andi                     419x (  0.0%)   depend:  74.5%
+  l.addi, l.add                  135183x (  1.4%)   depend:  27.1%
+  l.add, l.lhz                     1926x (  0.0%)   depend:   0.0%
+  l.lhz, l.addi                   17334x (  0.2%)   depend:   0.0%
+  l.add, l.sfne                   98226x (  1.0%)   depend:   0.0%
+  l.bf, l.sh                      22743x (  0.2%)   depend:   0.0%
+  l.sh, l.lhz                     15408x (  0.2%)   depend:   0.0%
+  l.sh, l.addi                     1926x (  0.0%)   depend:   0.0%
+  l.addi, l.sfeq                   1926x (  0.0%)   depend: 100.0%
+  l.sfeq, l.bnf                    1926x (  0.0%)   depend: 100.0%
+  l.bnf, l.slli                     963x (  0.0%)   depend:   0.0%
+  l.slli, l.add                   35524x (  0.4%)   depend:   0.0%
+  l.slli, l.ori                     107x (  0.0%)   depend:   0.0%
+  l.add, l.ori                     7597x (  0.1%)   depend:   0.0%
+  l.ori, l.lhs                     1070x (  0.0%)   depend:  90.0%
+  l.lhs, l.mul                   173339x (  1.7%)   depend: 100.0%
+  l.mul, l.addi                   95338x (  1.0%)   depend:   0.0%
+  l.sw, l.sfne                    26001x (  0.3%)   depend:   0.0%
+  l.bf, l.addi                   184314x (  1.8%)   depend:   0.0%
+  l.addi, l.lhs                   34173x (  0.3%)   depend:  22.5%
+  l.ori, l.add                     5347x (  0.1%)   depend:  48.0%
+  l.addi, l.sfgts                 34668x (  0.3%)   depend:   0.0%
+  l.sfgts, l.slli                 69336x (  0.7%)   depend:   0.0%
+  l.add, l.addi                   52639x (  0.5%)   depend:   0.0%
+  l.add, l.sfgts                  34668x (  0.3%)   depend:   0.0%
+  l.srai, l.sfles                 27178x (  0.3%)   depend:   0.0%
+  l.sfles, l.bf                   34668x (  0.3%)   depend: 100.0%
+  l.nop, l.ori                    27285x (  0.3%)   depend:   0.0%
+  l.ori, l.slli                   27392x (  0.3%)   depend:  99.6%
+  l.slli, l.sfne                  34668x (  0.3%)   depend:   0.0%
+  l.srai, l.addi                  91753x (  0.9%)   depend:   0.0%
+  l.bnf, l.add                     1171x (  0.0%)   depend:   0.0%
+  l.addi, l.jal                     159x (  0.0%)   depend:   0.0%
+  l.slli, l.andi                   3499x (  0.0%)   depend:   0.0%
+  l.sw, l.srai                     3499x (  0.0%)   depend:   0.0%
+  l.srai, l.xori                   3499x (  0.0%)   depend:   0.0%
+  l.xor, l.addi                    3499x (  0.0%)   depend:   0.0%
+  l.sfeqi, l.bf                  181438x (  1.8%)   depend: 100.0%
+  l.add, l.add                      107x (  0.0%)   depend:   0.0%
+  l.add, l.lwz                    26846x (  0.3%)   depend:   0.0%
+  l.lhs, l.lhs                   164672x (  1.6%)   depend:   0.0%
+  l.addi, l.sfne                   8897x (  0.1%)   depend: 100.0%
+  l.bf, l.add                    157932x (  1.6%)   depend:   0.0%
+  l.add, l.lhs                   138672x (  1.4%)   depend:   0.0%
+  l.srai, l.ori                    7490x (  0.1%)   depend:   0.0%
+  l.ori, l.sfles                   7490x (  0.1%)   depend:   0.0%
+  l.nop, l.slli                    7597x (  0.1%)   depend:   0.0%
+  l.add, l.jal                      107x (  0.0%)   depend:   0.0%
+  l.mul, l.srai                   78003x (  0.8%)   depend: 100.0%
+  l.srai, l.srai                  78217x (  0.8%)   depend:   0.0%
+  l.andi, l.sfne                  78003x (  0.8%)   depend:   0.0%
+  l.sfne, l.mul                   78003x (  0.8%)   depend:   0.0%
+  l.mul, l.add                    78002x (  0.8%)   depend:   0.0%
+  l.add, l.bf                     78002x (  0.8%)   depend: 100.0%
+  l.jal, l.nop                      107x (  0.0%)   depend:   0.0%
+  l.addi, l.sub                    8667x (  0.1%)   depend:   0.0%
+  l.sub, l.sfne                    8667x (  0.1%)   depend:   0.0%
+  l.nop, l.add                      856x (  0.0%)   depend:   0.0%
+  l.slli, l.lwz                     107x (  0.0%)   depend:   0.0%
+  l.lwz, l.srai                     107x (  0.0%)   depend:   0.0%
+  l.srai, l.lwz                     107x (  0.0%)   depend:   0.0%
+  l.jal, l.ori                    26951x (  0.3%)   depend:   0.0%
+  l.nop, l.lhz                       27x (  0.0%)   depend:   0.0%
+  l.lwz, l.j                        289x (  0.0%)   depend:   0.0%
+  l.sfeqi, l.j                     1567x (  0.0%)   depend:   0.0%
+  l.sfltsi, l.bnf                  2549x (  0.0%)   depend: 100.0%
+  l.bnf, l.sfnei                   2549x (  0.0%)   depend:   0.0%
+  l.sfnei, l.sfeqi                 2237x (  0.0%)   depend:   0.0%
+  l.or, l.sflesi                    107x (  0.0%)   depend: 100.0%
+  l.lhs, l.lhz                      107x (  0.0%)   depend:   0.0%
+  l.lhz, l.lhs                      107x (  0.0%)   depend:   0.0%
+  l.lhs, l.lwz                      107x (  0.0%)   depend:   0.0%
+  l.ori, l.lbz                      107x (  0.0%)   depend:   0.0%
+  l.lbz, l.addi                     107x (  0.0%)   depend:   0.0%
+  l.addi, l.slli                   8115x (  0.1%)   depend:  98.0%
+  l.slli, l.slli                    214x (  0.0%)   depend:   0.0%
+  l.sw, l.sfeq                      107x (  0.0%)   depend:   0.0%
+  l.sfeq, l.ori                     107x (  0.0%)   depend:   0.0%
+  l.bf, l.andi                    45627x (  0.5%)   depend:   0.0%
+  l.ori, l.sw                     50864x (  0.5%)   depend:   0.0%
+  l.addi, l.lbz                  113770x (  1.1%)   depend:  53.0%
+  l.lbz, l.sfeqi                 132840x (  1.3%)   depend: 100.0%
+  l.bf, l.sfnei                   84432x (  0.8%)   depend:   0.0%
+  l.addi, l.sfgtui                87670x (  0.9%)   depend: 100.0%
+  l.sfgtui, l.bf                  61246x (  0.6%)   depend: 100.0%
+  l.sw, l.lbz                     54863x (  0.5%)   depend:   0.0%
+  l.addi, l.sfeqi                 26842x (  0.3%)   depend:   0.0%
+  l.nop, l.addi                   10784x (  0.1%)   depend:   0.0%
+  l.addi, l.sfleui                15447x (  0.2%)   depend: 100.0%
+  l.sfleui, l.bnf                 15447x (  0.2%)   depend: 100.0%
+  l.bnf, l.sfeqi                  80747x (  0.8%)   depend:   0.0%
+  l.sfeqi, l.lwz                   8737x (  0.1%)   depend:   0.0%
+  l.sfgtui, l.bnf                 26424x (  0.3%)   depend: 100.0%
+  l.sw, l.jr                      26739x (  0.3%)   depend:   0.0%
+  l.lbz, l.lwz                    26739x (  0.3%)   depend:   0.0%
+  l.sfnei, l.addi                 34943x (  0.3%)   depend:   0.0%
+  l.bf, l.sw                      30651x (  0.3%)   depend:   0.0%
+  l.addi, l.j                     25449x (  0.3%)   depend:   0.0%
+  l.j, l.addi                     18749x (  0.2%)   depend:   0.0%
+  l.ori, l.sfeqi                   8197x (  0.1%)   depend:   2.5%
+  l.j, l.sw                        4607x (  0.0%)   depend:   0.0%
+  l.lbz, l.sfnei                   8947x (  0.1%)   depend: 100.0%
+  l.sw, l.add                       107x (  0.0%)   depend:   0.0%
+  l.add, l.sw                       107x (  0.0%)   depend:   0.0%
+  l.sw, l.sfgeu                     107x (  0.0%)   depend:   0.0%
+  l.sfgeu, l.bf                     107x (  0.0%)   depend: 100.0%
+  l.bf, l.lbz                       107x (  0.0%)   depend:   0.0%
+  l.lbz, l.j                        107x (  0.0%)   depend:   0.0%
+  l.bf, l.xor                      1280x (  0.0%)   depend:   0.0%
+  l.xor, l.sb                       961x (  0.0%)   depend: 100.0%
+  l.sb, l.lwz                       961x (  0.0%)   depend:   0.0%
+  l.lwz, l.add                      961x (  0.0%)   depend: 100.0%
+  l.add, l.sfgeu                    644x (  0.0%)   depend: 100.0%
+  l.sfgeu, l.bnf                    644x (  0.0%)   depend: 100.0%
+  l.bnf, l.sw                      6184x (  0.1%)   depend:   0.0%
+  l.xor, l.add                      319x (  0.0%)   depend:   0.0%
+  l.lbz, l.sw                       107x (  0.0%)   depend:   0.0%
+  l.sw, l.sfnei                  159226x (  1.6%)   depend:   0.0%
+  l.sw, l.sfltu                     106x (  0.0%)   depend:   0.0%
+  l.sfltu, l.bnf                    106x (  0.0%)   depend: 100.0%
+  l.add, l.sfltu                    636x (  0.0%)   depend: 100.0%
+  l.sfltu, l.bf                     636x (  0.0%)   depend: 100.0%
+  l.andi, l.j                      2639x (  0.0%)   depend:   0.0%
+  l.j, l.andi                      7475x (  0.1%)   depend:   0.0%
+  l.lwz, l.sfeqi                 153634x (  1.5%)   depend: 100.0%
+  l.add, l.j                       4940x (  0.0%)   depend:   0.0%
+  l.nop, l.sfeqi                     52x (  0.0%)   depend:   0.0%
+  l.lwz, l.sfgesi                    52x (  0.0%)   depend:   0.0%
+  l.sfgesi, l.lwz                    52x (  0.0%)   depend:   0.0%
+  l.lhs, l.sfne                   78051x (  0.8%)   depend: 100.0%
+  l.jal, l.lhs                     2964x (  0.0%)   depend:   0.0%
+  l.lhs, l.slli                    2964x (  0.0%)   depend: 100.0%
+  l.andi, l.and                   10818x (  0.1%)   depend:   0.0%
+  l.and, l.srli                   10818x (  0.1%)   depend:   0.0%
+  l.srli, l.lwz                    5409x (  0.1%)   depend:   0.0%
+  l.lhs, l.or                      5409x (  0.1%)   depend:   0.0%
+  l.or, l.lhs                      5409x (  0.1%)   depend:   0.0%
+  l.lhs, l.sh                      5409x (  0.1%)   depend:   0.0%
+  l.sh, l.sub                      5409x (  0.1%)   depend:   0.0%
+  l.sub, l.lhs                     5409x (  0.1%)   depend:   0.0%
+  l.srli, l.sfgtsi                 5409x (  0.1%)   depend:   0.0%
+  l.sfgtsi, l.or                   5409x (  0.1%)   depend:   0.0%
+  l.or, l.bf                       5409x (  0.1%)   depend:   0.0%
+  l.sh, l.j                        3544x (  0.0%)   depend:   0.0%
+  l.j, l.sfeqi                     3544x (  0.0%)   depend:   0.0%
+  l.sh, l.sfeqi                    1865x (  0.0%)   depend:   0.0%
+  l.jal, l.sh                        26x (  0.0%)   depend:   0.0%
+  l.slli, l.lhs                      52x (  0.0%)   depend:   0.0%
+  l.lhs, l.sflesi                    52x (  0.0%)   depend: 100.0%
+  l.sflesi, l.ori                    52x (  0.0%)   depend:   0.0%
+  l.lwz, l.andi                   10140x (  0.1%)   depend:   0.0%
+  l.andi, l.sfgesi                 5304x (  0.1%)   depend:   0.0%
+  l.sfgesi, l.bnf                  5304x (  0.1%)   depend: 100.0%
+  l.lwz, l.lbz                    76152x (  0.8%)   depend:   4.5%
+  l.lbz, l.sfne                   76154x (  0.8%)   depend: 100.0%
+  l.sfne, l.bnf                  147394x (  1.5%)   depend: 100.0%
+  l.j, l.lwz                       2366x (  0.0%)   depend:   0.0%
+  l.andi, l.lbs                    4836x (  0.0%)   depend:   0.0%
+  l.lbs, l.andi                    4836x (  0.0%)   depend: 100.0%
+  l.andi, l.add                    5096x (  0.1%)   depend: 100.0%
+  l.lwz, l.sfltsi                  5304x (  0.1%)   depend: 100.0%
+  l.slli, l.srai                   7956x (  0.1%)   depend: 100.0%
+  l.srai, l.sfne                   5304x (  0.1%)   depend: 100.0%
+  l.andi, l.srai                    260x (  0.0%)   depend:   0.0%
+  l.slli, l.sub                      52x (  0.0%)   depend: 100.0%
+  l.sub, l.add                       52x (  0.0%)   depend: 100.0%
+  l.sw, l.sflesi                     52x (  0.0%)   depend:   0.0%
+  l.sw, l.j                          26x (  0.0%)   depend:   0.0%
+  l.sfnei, l.sh                      26x (  0.0%)   depend:   0.0%
+  l.sh, l.bnf                        26x (  0.0%)   depend:   0.0%
+  l.srai, l.sw                     2652x (  0.0%)   depend: 100.0%
+  l.j, l.nop                       2522x (  0.0%)   depend:   0.0%
+  l.sw, l.movhi                      48x (  0.0%)   depend:   0.0%
+  l.movhi, l.ori                     48x (  0.0%)   depend: 100.0%
+  l.ori, l.mtspr                     24x (  0.0%)   depend: 100.0%
+  l.mtspr, l.lwz                     24x (  0.0%)   depend:   0.0%
+  l.addi, l.rfe                      24x (  0.0%)   depend:   0.0%
+  l.rfe, l.lwz                        2x (  0.0%)   depend:   0.0%
+  l.lhs, l.addi                       3x (  0.0%)   depend:   0.0%
+  l.rfe, l.lhs                        1x (  0.0%)   depend:   0.0%
+  l.rfe, l.bf                         3x (  0.0%)   depend:   0.0%
+  l.rfe, l.bnf                        3x (  0.0%)   depend:   0.0%
+  l.rfe, l.andi                       3x (  0.0%)   depend:   0.0%
+  l.rfe, l.ori                        2x (  0.0%)   depend:   0.0%
+  l.rfe, l.lbz                        2x (  0.0%)   depend:   0.0%
+  l.srli, l.addi                      1x (  0.0%)   depend:   0.0%
+  l.rfe, l.sfnei                      2x (  0.0%)   depend:   0.0%
+  l.rfe, l.addi                       2x (  0.0%)   depend:   0.0%
+  l.rfe, l.add                        2x (  0.0%)   depend:   0.0%
+  l.sfne, l.addi                      1x (  0.0%)   depend:   0.0%
+  l.rfe, l.sfne                       1x (  0.0%)   depend:   0.0%
+  l.rfe, l.mul                        1x (  0.0%)   depend:   0.0%
+10000000 instructions (dynamic, dependency stats)  depend: 29%
+(sim) 
+
